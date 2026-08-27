@@ -1,0 +1,18 @@
+[Unit]
+Description=Bug Hunter AI — Local-First AI Cybersecurity Assistant
+After=network.target
+
+[Service]
+Type=simple
+User=%I
+WorkingDirectory=/opt/bug-hunter
+ExecStart=/opt/bug-hunter/.venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8787
+Restart=on-failure
+RestartSec=5s
+Environment=APP_HOST=127.0.0.1
+Environment=APP_PORT=8787
+Environment=OLLAMA_HOST=http://127.0.0.1:11434
+Environment=OLLAMA_MODEL=llama3
+
+[Install]
+WantedBy=multi-user.target

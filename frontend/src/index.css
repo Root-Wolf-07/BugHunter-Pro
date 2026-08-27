@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-bg-primary text-text-primary font-sans;
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d1117;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #58a6ff;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-bg-secondary border border-border-default rounded-lg;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+  }
+  
+  .btn-primary {
+    @apply px-4 py-2 rounded-md font-medium text-sm transition-all duration-200;
+    background: #58a6ff;
+    color: #0d1117;
+  }
+  .btn-primary:hover {
+    background: #79b8ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+  }
+  
+  .btn-danger {
+    @apply px-4 py-2 rounded-md font-medium text-sm transition-all duration-200;
+    background: transparent;
+    color: #ff4757;
+    border: 1px solid #ff4757;
+  }
+  .btn-danger:hover {
+    background: rgba(255, 71, 87, 0.1);
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 rounded-md font-medium text-sm transition-all duration-200;
+    background: transparent;
+    color: #8b949e;
+    border: 1px solid #30363d;
+  }
+  .btn-ghost:hover {
+    color: #e6edf3;
+    border-color: #58a6ff;
+    background: rgba(88, 166, 255, 0.05);
+  }
+  
+  .severity-badge {
+    @apply px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide;
+  }
+  .severity-CRITICAL { background: rgba(255, 71, 87, 0.2); color: #ff4757; border: 1px solid rgba(255,71,87,0.3); }
+  .severity-HIGH { background: rgba(255, 107, 53, 0.2); color: #ff6b35; border: 1px solid rgba(255,107,53,0.3); }
+  .severity-MEDIUM { background: rgba(255, 165, 2, 0.2); color: #ffa502; border: 1px solid rgba(255,165,2,0.3); }
+  .severity-LOW { background: rgba(46, 213, 115, 0.15); color: #2ed573; border: 1px solid rgba(46,213,115,0.3); }
+  .severity-INFO { background: rgba(30, 144, 255, 0.15); color: #1e90ff; border: 1px solid rgba(30,144,255,0.3); }
+  
+  .status-badge {
+    @apply px-2 py-0.5 rounded text-xs font-medium uppercase;
+  }
+  
+  .terminal-text {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    padding: 1rem;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    color: #7ee787;
+    line-height: 1.6;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium transition-all duration-150;
+    color: #8b949e;
+  }
+  .nav-link:hover {
+    color: #e6edf3;
+    background: rgba(88, 166, 255, 0.08);
+  }
+  .nav-link.active {
+    color: #58a6ff;
+    background: rgba(88, 166, 255, 0.12);
+  }
+  
+  .stat-card {
+    @apply card p-5 flex flex-col gap-2;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 rounded-md text-sm;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    color: #e6edf3;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .input-field:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+  }
+  
+  .select-field {
+    @apply input-field;
+    cursor: pointer;
+  }
+
+  .glow-critical { box-shadow: 0 0 20px rgba(255, 71, 87, 0.15); }
+  .glow-high { box-shadow: 0 0 20px rgba(255, 107, 53, 0.15); }
+  .glow-medium { box-shadow: 0 0 20px rgba(255, 165, 2, 0.15); }
+}
+
+/* Animated background grid */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(88, 166, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(88, 166, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Pulse animation for scanning states */
+@keyframes scan-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.scanning { animation: scan-pulse 1.5s ease-in-out infinite; }
+
+/* Slide in animation */
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-in { animation: slide-in 0.2s ease-out; }
